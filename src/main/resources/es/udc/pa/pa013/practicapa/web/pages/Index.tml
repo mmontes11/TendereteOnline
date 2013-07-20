@@ -1,0 +1,88 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+	<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ 	<link rel="stylesheet" href="/resources/demos/style.css" />
+  	<script>
+  		function runSlideWelcome() {
+      		$( "#welcome" ).effect( "slide", {}, 500, callback );
+    	};
+    	function runShakeWarning() {
+      		$( "#warning" ).effect( "shake", {}, 500, callback );
+    	};
+    	function callback() {
+      		setTimeout(function() {
+        		$( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+      		}, 1000 );
+    	};
+    	window.onload = function() {
+			runShakeWarning();
+			runSlideWelcome();
+		}
+  	</script>	 
+	</head>
+
+	<body>
+		
+		
+	<div id="welcome">	
+		<p class="welcome">
+		    <h3><strong>${message:welcome}</strong></h3>    
+		</p>
+	</div>
+  	<div id="warning" class="alert alert-error">
+		<p>
+		${message:info}
+		</p>
+		<p>
+		<a href="http://es.linkedin.com/pub/mart%C3%ADn-montes-p%C3%A9rez/69/b51/8b0">${message:name} <img src="${context:/img/linkedin.png}"/></a>
+		</p>
+ 	</div>
+	<div id="myCarousel" class="carousel slide">	  	
+	  	<!-- Carousel items -->
+	  	<div class="carousel-inner">
+	    	<div class="active item" align="center">
+	    		<a href="#" t:type="PageLink" t:page="user/ProductDetails" t:context="activeProductCarousel.productId">
+	    			<img src="${prop:activeProductCarousel.imageURL}" class="img-rounded"/>
+	    		</a>
+	    	</div>
+	    	<div class="item" align="center" t:type="Loop" t:source="restProductsCarousel" t:value="product">
+	    		<a href="#" t:type="PageLink" t:page="user/ProductDetails" t:context="product.productId">
+	    			<img src="${prop:product.imageURL}"/>
+	    		</a>
+	    	</div>
+	  	</div>
+	  	<!-- Carousel nav -->
+	  	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	  	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	</div>
+	
+	<p>
+		<h5>${message:findHere}</h5>
+	</p>
+
+	<form t:type="Form" t:id="findProductsForm">
+		<t:errors />
+		<div class="field">
+			<t:label for="keywords">${message:keywords}</t:label>
+			<span class="entry">
+				<input t:id="keywords" t:type="TextField"
+					size="16" maxlength="50" class="search-query" placeholder="Search"/>
+			</span>
+		</div>
+		<div class="field">
+			<t:label for="category">${message:category}</t:label>
+			<span class="entry">
+        		<t:select t:id="category" model="avaliableCategories" />
+        	</span>		
+		</div>		
+		<div class="button">
+			<button type="submit" class="btn btn-primary">
+  			<i class="icon-search icon-white"></i> ${message:submit}
+			</button>
+		</div>		
+	</form>
+	</body>   
+</html>

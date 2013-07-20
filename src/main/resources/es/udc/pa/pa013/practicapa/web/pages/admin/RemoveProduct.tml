@@ -1,0 +1,22 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+	
+	<form t:type="Form" t:id="removeProductForm">
+	   <t:errors/>
+	   
+	   <div class="field">        
+	        <t:label for="productId"/>
+	        <span class="entry">    
+	            <input t:id="productId" t:type="TextField"
+				       t:validate="required,min=0" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	   
+	   <div class="button">
+	        <button type="submit" class="btn btn-danger">
+  				<i class="icon-remove"/> ${message:submit}
+			</button>        
+	    </div>	   
+	</form>	   	
+</html>

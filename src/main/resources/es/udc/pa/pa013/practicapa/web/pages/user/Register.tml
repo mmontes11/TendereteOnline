@@ -1,0 +1,104 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+	<form t:type="Form" t:id="registrationForm">
+	   <t:errors/>
+	   <div class="field">        
+	        <t:label for="loginName"/>
+	        <span class="entry">    
+	            <input t:id="loginName" t:type="TextField"
+				       t:validate="required" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	    
+	   <div class="field">        
+	        <t:label for="password"/>
+	        <span class="entry">
+	            <input t:id="password" t:type="PasswordField"
+				       t:validate="required" 
+	                   size="16" maxlength="8"/>
+	        </span>
+	    </div>
+
+	   <div class="field">        
+	        <t:label for="retypePassword"/>
+	        <span class="entry">
+	            <input t:id="retypePassword" t:type="PasswordField"
+				       t:validate="required" 
+	                   size="16" maxlength="8"/>
+	        </span>
+	    </div>
+	    
+	   <div class="field">        
+	        <t:label for="firstName"/>
+	        <span class="entry">    
+	            <input t:id="firstName" t:type="TextField"
+				       t:validate="required" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	   
+	   <div class="field">        
+	        <t:label for="lastName"/>
+	        <span class="entry">    
+	            <input t:id="lastName" t:type="TextField"
+				       t:validate="required" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	   
+	   <div class="field">        
+	        <t:label for="email"/>
+	        <span class="entry">    
+	            <input t:id="email" t:type="TextField"
+				       t:validate="required,regexp" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	   
+	   <div class="field">        
+	        <t:label for="street"/>
+	        <span class="entry">    
+	            <input t:id="street" t:type="TextField"
+				       t:validate="required" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	   
+	   <div class="field">        
+	        <t:label for="number"/>
+	        <span class="entry">    
+	            <input t:id="number" t:type="TextField"
+				       t:validate="required,min=0" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	   
+	   <div class="field">        
+	        <t:label for="door"/>
+	        <span class="entry">    
+	            <input t:id="door" t:type="TextField"
+				       t:validate="required" 
+				       size="16" maxlength="30" />
+	        </span>
+	   </div>
+	   
+	   <div class="field">        
+	        <t:label for="zipCode"/>
+	        <span class="entry">    
+	            <input t:id="zipCode" t:type="TextField"
+				       t:validate="required" 
+				       size="16" maxlength="5" />
+	        </span>
+	   </div>
+	    
+	    <div class="button">
+	        <button type="submit" class="btn btn-primary">
+  			<i class="icon-user icon-white"></i> ${message:submit}
+			</button>    
+	    </div>
+	    
+	</form>
+	
+</html>

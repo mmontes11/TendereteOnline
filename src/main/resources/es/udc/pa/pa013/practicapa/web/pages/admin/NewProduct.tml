@@ -1,0 +1,44 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+	
+	<form t:type="Form" t:id="newProductForm">
+	   	<t:errors/>
+		<div class="field" align="center">
+			<t:label for="category">${message:category}</t:label>
+			<span class="entry">
+        		<t:select t:id="category" t:validate="required"  model="avaliableCategories" />
+        	</span>		
+		</div>	
+	   <div class="field" align="center">        
+	        <t:label for="name"/>
+	        <span class="entry">
+	            <input t:id="name" t:type="TextField"
+				       t:validate="required" 
+	                    size="16" maxlength="30"/>
+	        </span>
+	    </div>
+	    <div class="field" align="center">        
+	        <t:label for="price"/>
+	        <span class="entry">
+	            <input t:id="price" t:type="TextField"
+				       t:validate="required,min=0" 
+	                    size="16" maxlength="30"/>
+	        </span>
+	    </div>
+	    <div class="field" align="center">        
+	        <t:label for="imageURL"/>
+	        <span class="entry">
+	            <input t:id="imageURL" t:type="TextField"
+				       t:validate="required" 
+	                    size="16" maxlength="300"/>
+	        </span>
+	    </div>
+	    <div class="button" align="center">
+	        <button type="submit" class="btn btn-success">
+  			<i class="icon-plus"></i> ${message:submit}
+			</button>    
+	    </div>	   
+	</form>   
+	
+	
+</html>

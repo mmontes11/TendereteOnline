@@ -1,0 +1,61 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+			
+	<!-- Print order details. -->
+
+	<p><strong>${message:orderDetails-label}</strong></p>
+
+	<div id="table1">
+
+	<table class="table table-striped" align="center" id="t1">
+	<thead>
+		<tr>
+			<th>${message:orderId-label}</th>
+			<th>${message:userName-label}</th>
+			<th>${message:date-label}</th>
+			<th>${message:totalPrice-label}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr t:source="order" t:value="order">	
+			<td>${order.orderId}</td>
+			<td>${order.userProfile.loginName}</td>	
+			<td><t:output value="order.date.getTime()" format="dateFormat"/></td>
+			<td><t:output value="order.price" format="numberFormat"/> €</td>					
+		</tr>
+	</tbody>
+	</table>
+	
+	</div>
+	
+	<!-- Print order lines. -->
+
+	<p><strong>${message:orderLines-label}</strong></p>
+
+	<div id="table2">
+
+	<table class="table table-condensed" align="center" id="t2">
+	<thead>
+		<tr>
+			<th>${message:orderLineId-label}</th>
+			<th>${message:productName-label}</th>
+			<th>${message:amount-label}</th>
+			<th>${message:price-label}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr t:type="Loop" t:source="orderLines" t:value="orderLine">
+			<td>${orderLine.orderLineId}</td>
+			<td>
+				<a href="#" t:type="PageLink" t:page="user/ProductDetails" t:context="orderLine.product.productId">
+					${orderLine.product.name}
+				</a>
+			</td>
+			<td>${orderLine.amount}</td>
+			<td><t:output value="order.price" format="numberFormat"/> €</td>
+		</tr>
+	</tbody>
+	</table>	
+	</div>
+	<a href="#" t:type="PageLink" t:page="user/ViewOrders" class="btn btn-primary"> <i class="icon-list"></i> ${message:backMyOrders}</a>	
+</html>		

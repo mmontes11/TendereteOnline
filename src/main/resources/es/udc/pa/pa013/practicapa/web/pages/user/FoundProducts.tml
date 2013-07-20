@@ -1,0 +1,122 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+	<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ 	<link rel="stylesheet" href="/resources/demos/style.css" />
+  	<script>
+  		function runSlideProducts() {
+      		$( "#productsTable" ).effect( "slide", {}, 500, callback );
+    	};	
+    	function callback() {
+      		setTimeout(function() {
+        		$( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+      		}, 1000 );
+    	};    	  	
+    	window.onload = function() {
+			runSlideProducts();
+		}		
+  	</script>	 
+	</head>
+	<body>
+	<t:if test="products">
+
+		<form t:type="Form" t:id="Search" class="form-search" t:zone="tableZone">
+			<t:errors />
+
+			<div class="input-append">
+				<!-- <t:label for="category">${message:category}</t:label> -->
+				<span class="entry">
+					<t:select t:id="category" model="avaliableCategories" />
+				</span>
+			</div>	
+			&nbsp;&nbsp;
+			<div class="input-append">
+				<!-- <t:label for="keywords">${message:keywords}</t:label> -->
+				<span class="entry">
+					<input t:id="keywords" t:type="TextField" size="16"
+						maxlength="50" class="span2 search-query" placeholder="Search" />
+					<button type="submit" class="btn btn-primary">
+						<i class="icon-search icon-white"></i>
+						${message:submit}
+					</button>
+				</span>
+			</div>
+		</form>
+
+		<!-- Print products. -->
+
+		<t:zone t:id="tableZone" id="tableZone">
+			<table id="productsTable" class="table table-striped" align="center">
+				<thead>
+					<tr>
+						<th>${message:nameProduct-label}</th>
+						<th>${message:category-label}</th>
+						<th>${message:priceProduct-label}</th>
+						<th>${message:addProduct-label}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr t:type="Loop" t:source="products" t:value="product">
+						<td>
+							<a href="#" t:type="PageLink" t:page="user/ProductDetails"
+									t:context="product.productId">${product.name}</a>
+						</td>			
+						<td>${product.category.name}</td>
+						<td>${product.price}</td>
+						<td>
+							<a href="#" t:type="ActionLink" t:id="AddCart" t:context="product.productId">
+								<i class="icon-shopping-cart"></i>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- "Previous" and "Next" links. -->
+
+			<ul class="pager">
+				<t:if test="previousLinkContext">
+					<li>
+						<a t:type="eventlink" t:event="previous" t:context="previousLinkContext"
+							t:zone="tableZone" href="#"> &larr;
+							${message:link-previous}
+						</a>
+					</li>
+					<p:else>
+						<li class="disabled">
+							<a href="#"> &larr;
+								${message:link-previous}
+							</a>
+						</li>
+					</p:else>
+				</t:if> 
+			&nbsp;
+				<t:if test="nextLinkContext">
+					<li>
+						<a t:type="eventlink" t:event="next" t:context="nextLinkContext"
+							t:zone="tableZone" href="#">
+							${message:link-next} &rarr;
+						</a>
+					</li>
+					<p:else>
+						<li class="disabled">
+							<a href="#">
+								${message:link-next} &rarr;
+							</a>
+						</li>
+					</p:else>
+				</t:if>
+			</ul>
+
+		</t:zone>
+		<p:else>
+			<div class="alert alert-info">
+				<strong>
+	  				${message:noProducts}
+	  			</strong>
+			</div>
+		</p:else>
+	</t:if>
+	</body>
+</html>

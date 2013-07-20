@@ -1,0 +1,9 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+	
+	<div class="alert alert-error">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <h4>${message:warning}</h4>
+	  ${message:message:buynonexisting}
+	</div>
+</html>	

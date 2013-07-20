@@ -1,0 +1,134 @@
+/* Body. */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 10px 20px;
+    background-color: #dddde0;
+    /*padding: 2em 4em 2em 4em;*/
+	padding: 1em 2em 1em 2em;
+}
+
+/* Links. */
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Window. */
+
+#window {    
+    border: #000 1px solid;
+    background-color: #fff;
+    padding: 7px;
+    width: 98%;
+    /*border: white 4px outset;*/
+    /*border: 5px outset #cccccc; */
+border: none;
+}
+
+/* Page title. */
+
+#pageTitle {
+    background-color: #097099;    
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0 5px 5px;
+    width: 99%;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+}
+
+.pageTitleBordered {
+    text-align: center;
+}
+
+
+/* Menu. */
+
+#menu {
+    background-color: #ffffff;
+    color: #333333;
+    text-align: left;
+    padding: 5px 0 5px 5px;
+    width: 99%;
+}
+
+#menuWelcome {
+    font-weight: bold;
+}
+
+#menuLinks a {
+    color : #0088CC;
+}
+
+/* Content. */
+
+#content {
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+p.welcome {
+    font-size: 16px;
+}
+
+/* Forms. */
+
+form {
+    width: 100%;
+}
+
+div.field {
+    clear: both;
+    padding-top: 1em;
+    width: 100%;
+}
+
+div.field label {
+    float: left;    
+    text-align: right;
+    font-weight: bold;
+    width: 49.5%;
+}
+
+div.field span.entry {
+    float: right;    
+    text-align: left;
+    width: 49.5%;
+}
+
+div.button {
+    clear: both;
+    padding-top: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+input, select, textarea  {
+    background-color: #f4f4f4;
+}
+
+/* Error messages. */
+
+div.t-error ul {
+	font-weight: bold;
+}
+
+
+/* Footer. */
+
+#footer {
+    border-top: 1px solid #000;
+    padding-top: 5px;
+    text-align: center;
+    width: 100%;
+}

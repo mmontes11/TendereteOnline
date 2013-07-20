@@ -1,0 +1,9 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+	<div id="warning" class="alert alert-block">
+		<strong>
+	  		${message:buyempty}
+		</strong>
+	</div>
+</html>	

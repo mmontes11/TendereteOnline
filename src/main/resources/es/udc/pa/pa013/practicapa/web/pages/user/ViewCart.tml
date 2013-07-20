@@ -1,0 +1,113 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+	<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ 	<link rel="stylesheet" href="/resources/demos/style.css" />
+  	<script>
+  		function runBounceCart() {
+      		$( "#cartTable" ).effect( "bounce", {}, 500, callback );
+    	};
+    	function runSlideCart() {
+      		$( "#cart" ).effect( "slide", {}, 500, callback );
+    	};	
+    	function callback() {
+      		setTimeout(function() {
+        		$( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+      		}, 1000 );
+    	};    	  	
+    	window.onload = function() {
+			runBounceCart();
+			runSlideCart();
+		}		
+  	</script>	
+	</head>
+	<body>
+		<div id="cart">
+			<img src="${context:/img/cart.jpg}"/>
+		</div>
+		<div>
+		<t:zone t:id="tableZone" id="tableZone">
+		<form t:type="form" t:id="lines" t:zone="tableZone">
+	        <t:errors/>		
+				<table id="cartTable" class="table table-hover">
+					<thead>
+						<tr>
+							<th>${message:name-label}</th>
+							<th>${message:price-label}</th>
+							<th>${message:amount-label}</th>
+							<th>${message:add-label}</th>
+							<th>${message:remove-label}</th>
+							<th>${message:delete-label}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<t:Loop t:source="cartLines" t:value="cartLine" t:formstate="ITERATION">
+							<tr>
+								<td>
+									<a href="#" t:type="PageLink" t:page="user/ProductDetails"
+										t:context="cartLine.productId">${cartLine.name}</a>
+								</td>
+								<td>
+									<span class="badge badge-inverse">${cartLine.price} €</span>
+								</td>
+								<td>
+									<span class="entry">    
+						            	<input t:id="amount" t:value="cartLine.amount" t:type="TextField"
+									       t:validate="required, min=0" 
+									       size="12" maxlength="10" />
+		        					</span>
+								</td>
+								
+								<td>
+									<a t:type="eventlink" t:event="addOne" t:context="cartLine.productId"
+										t:zone="tableZone" href="#">
+										<i class="icon-plus-sign"></i>
+									</a>
+								</td>
+								<td>
+									<a t:type="eventlink" t:event="removeOne" t:context="cartLine.productId"
+										t:zone="tableZone" href="#">
+										<i class="icon-minus-sign"></i>
+									</a>
+								</td>
+								<td>
+									<a t:type="eventlink" t:event="removeLine" t:context="cartLine.productId"
+										t:zone="tableZone" href="#">
+										<i class="icon-trash"></i>
+									</a>
+								</td>
+							</tr>
+						</t:Loop>
+					</tbody>
+				</table>
+			
+			<div class="button">
+				<button type="refresh" class="btn btn-primary">
+					<i class="icon-refresh icon-white"></i>
+					${message:refresh}
+				</button>
+			</div>
+			<div class="button">
+				<t:actionlink t:id="buy" class="btn btn-success">
+					<i class="icon-gift icon-white"></i>
+					${message:submit}
+				</t:actionlink>
+			</div>
+			</form>
+			</t:zone>
+			
+			<p>
+				<div>
+					<strong>${message:totalPrice-label}</strong>
+				</div>
+				<div>
+					<t:zone t:id="priceZone" id="priceZone">
+						<span class="badge badge-warning">${totalPrice} €</span>
+					</t:zone>
+				</div>
+			</p>
+		</div>
+	</body>
+</html>	

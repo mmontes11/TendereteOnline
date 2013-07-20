@@ -1,0 +1,60 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+	<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ 	<link rel="stylesheet" href="/resources/demos/style.css" />
+  	<script>
+  		function runSlideName() {
+      		$( "#name" ).effect( "slide", {}, 500, callback );
+    	};
+    	function runBouncePic() {
+      		$( "#pic" ).effect( "bounce", {}, 500, callback );
+    	};   	
+    	function callback() {
+      		setTimeout(function() {
+        		$( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+      		}, 1000 );
+    	};    	  	
+    	window.onload = function() {
+			runSlideName();
+			runBouncePic();
+		}
+		
+  	</script>	 
+	</head>
+
+	<body>
+	
+	<div id="name">
+		<h3><strong>${name}</strong></h3>
+	</div>
+	
+	<div id="pic">
+		<img src="${imageURL}" class="img-polaroid"/>
+	</div>
+
+	<p><strong>${message:productDetails-label}</strong></p>
+	
+	<table class="table table-striped" align="center">
+		<tr>
+			<th>${message:productId-label}</th>
+			<th>${message:category-label}</th>
+			<th>${message:price-label}</th>
+		</tr>
+		
+		<tr>
+			<td>${productId}</td>
+			<td>${category.name}</td>
+			<td><t:output value="price" format="numberFormat"/> €</td>
+		</tr>
+	</table>
+
+	<a href="#" id="addButton" t:type="ActionLink" t:id="AddCart" t:context="productId" class="btn btn-primary">
+		<i class="icon-shopping-cart"></i>
+		${message:AddCart}
+	</a>
+
+	</body>
+</html>	

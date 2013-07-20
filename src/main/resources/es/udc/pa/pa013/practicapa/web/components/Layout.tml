@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	  xmlns:p="tapestry:parameter">
+
+<head>
+	<title>${pageTitle}</title>
+	<link rel="StyleSheet" href="${context:/css/styles.css}"
+		  type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
+</head>		  	  
+<body>
+
+<!-- Window. -->
+
+<div id="window">
+
+<!-- Page title. -->
+
+<div id="pageTitle">
+	<div class="pageTitleBordered">
+       ${message:header}
+	</div>
+</div>
+
+<!-- Menu. -->
+
+<div id="menu">
+	<span id="menuWelcome">
+  		<t:if test="userSession">
+ 			${message:menu-hello} ${userSession.firstName}
+            <p:else>
+            	${message:menu-welcome}
+            </p:else>
+		</t:if>
+    </span>
+    <t:if test="menuExplanation">
+	 	<span id="menuExplanation">
+ 			${menuExplanation}
+ 		</span>
+        <p:else>
+		    <span id="menuLinks">	    									
+				<t:delegate to="typeUser"/>
+				
+				<ul id="menu">				
+				<t:block id="noSession">
+					<ul class="nav nav-pills">
+						<li>
+							<a href="#" t:type="PageLink" t:page="Index"> <i class="icon-home"></i> ${message:menu-home}</a>
+						</li>
+						<li>
+							<a href="#" t:type="PageLink" t:page="user/SelectLanguage"> <i class="icon-font"></i> ${message:menu-language}</a>
+						</li>							
+						<li>
+							<a href="#" t:type="PageLink" t:page="user/Login"> <i class="icon-user"></i> ${message:menu-authenticate}</a>
+						</li>
+					</ul>	 						
+				</t:block>	
+	    			    			    			    		
+		    	<t:block id="user">
+		    		<ul class="nav nav-pills">
+		    			<li>
+							<a href="#" t:type="PageLink" t:page="Index"> <i class="icon-home"></i> ${message:menu-home}</a>
+						</li>
+						<li>	    	
+							<t:if test="admin">
+		    					<a href="#" t:type="PageLink" t:page="admin/ViewAdminOperations"> <i class="icon-wrench"></i> ${message:menu-viewAdminOptions}</a>
+							</t:if>							
+						</li>
+						<li>
+							<a href="#" t:type="PageLink" t:page="user/UpdateProfile"> <i class="icon-user"></i> ${message:menu-updateProfile}</a>
+						</li>
+						<li>
+							<t:if test="totalItems">
+		    						<a href="#" t:type="PageLink" t:page="user/ViewCart"> <i class="icon-shopping-cart"></i> ${message:menu-Cart} <span class="badge badge-warning">${totalItems}</span></a>
+							</t:if>
+						</li>
+						<li>
+							<a href="#" t:type="PageLink" t:page="user/ViewOrders"> <i class="icon-list"></i> ${message:menu-MyOrders}</a>
+						</li>
+						<li>
+							<a href="#" t:type="PageLink" t:page="user/SelectLanguage"> <i class="icon-font"></i> ${message:menu-language}</a>
+						</li>	
+						<li>
+							<a href="#" t:type="ActionLink" t:id="logout"> <i class="icon-off"></i> ${message:menu-logout}</a>
+						</li>
+					</ul>	
+	 			</t:block>
+	 			</ul>			 					   			    				    		
+			</span>
+        </p:else>
+ 	</t:if>
+</div>
+
+<!-- Content. -->
+
+<div id="content">
+  	<div class="container">
+   <t:body/>
+  </div>
+</div>
+
+
+<!-- Body footer. -->
+
+<div id="footer" class="clearfix simple">
+    <div align="center">
+       ${message:footer}
+       <strong>${message:contact}</strong>
+       <a href="http://es.linkedin.com/pub/mart%C3%ADn-montes-p%C3%A9rez/69/b51/8b0"> <img src="${context:/img/linkedin.png}"/> </a>
+    </div>
+</div>
+
+<!-- End of "window" id. -->
+
+</div>
+
+<!-- End of HTML body. -->
+
+</body>
+
+</html>

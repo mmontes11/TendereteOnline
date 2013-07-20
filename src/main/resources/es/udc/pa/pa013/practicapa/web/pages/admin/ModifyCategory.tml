@@ -1,0 +1,19 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+	
+	<form t:type="Form" t:id="modifyProductForm">
+	   <t:errors/>
+	   
+	   <div class="field">
+			<t:label for="category">${message:category}</t:label>
+			<span class="entry">
+        		<t:select t:id="category" model="avaliableCategories" t:validate="required"/>
+        	</span>		
+		</div>		
+		<div class="button">
+			<button type="submit"  class="btn btn-warning">
+  			<i class="icon-pencil"/> ${message:submit}
+			</button>
+		</div>		   
+	</form>		
+</html>

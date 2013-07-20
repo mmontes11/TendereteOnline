@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.udc.pa.pa013.practicapa</groupId>
+	<artifactId>TendereteOnline</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0</version>
+	<name>${project.artifactId} Project</name>
+
+	<!-- =================================================================== -->
+	<!-- Default values for properties. These default values are expected to 
+		be valid for most profiles. Specific profiles can overwrite values when necessary. -->
+	<properties>
+		<!-- Data source properties -->
+		<dataSource.user>pojo</dataSource.user>
+		<dataSource.password>pojo</dataSource.password>
+		<dataSource.jndiName>jdbc/pojo-examples-ds</dataSource.jndiName>
+		<testDataSource.user>${dataSource.user}</testDataSource.user>
+		<testDataSource.password>${dataSource.password}</testDataSource.password>
+
+		<!-- Hibernate properties -->
+		<hibernate.show_sql>true</hibernate.show_sql>
+		<hibernate.format_sql>true</hibernate.format_sql>
+		<hibernate.use_sql_comments>true</hibernate.use_sql_comments>
+
+		<!-- Encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Package versions (except those defined in "profiles" section) -->
+		<slf4j.version>1.6.6</slf4j.version>
+		<javassist.version>3.15.0-GA</javassist.version>
+		<cglib.version>2.2</cglib.version>
+		<hibernate.version>4.1.5.SP1</hibernate.version>
+		<junit.version>4.10</junit.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
+		<servletApi.version>2.5</servletApi.version>
+		<tapestry.version>5.3.4</tapestry.version>
+
+		<!-- Plugin versions -->
+		<mavenCompilerPlugin.version>2.3.2</mavenCompilerPlugin.version>
+		<mavenResourcesPlugin.version>2.5</mavenResourcesPlugin.version>
+		<sqlMavenPlugin.version>1.4</sqlMavenPlugin.version>
+		<mavenAssemblyPlugin.version>2.2.1</mavenAssemblyPlugin.version>
+		<jettyMavenPlugin>8.1.5.v20120716</jettyMavenPlugin>
+		<pojo-modelutil.version>2.0.0</pojo-modelutil.version>
+	</properties>
+
+	<!-- ========================================================== -->
+	<!-- Profiles -->
+	<profiles>
+		<profile>
+			<id>mysql</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- JDBC driver properties -->
+				<jdbcDriver.groupId>mysql</jdbcDriver.groupId>
+				<jdbcDriver.artifactId>mysql-connector-java</jdbcDriver.artifactId>
+				<jdbcDriver.version>5.1.21</jdbcDriver.version>
+				<jdbcDriver.className>com.mysql.jdbc.Driver</jdbcDriver.className>
+
+				<!-- Data source properties -->
+				<dataSource.url>jdbc:mysql://localhost/pojo</dataSource.url>
+				<testDataSource.url>${dataSource.url}test</testDataSource.url>
+				<dataSource.createTablesScript>1-MySQLCreateTables.sql</dataSource.createTablesScript>
+				<dataSource.createDataScript>2-MySQLCreateData.sql</dataSource.createDataScript>
+
+				<!-- Hibernate properties -->
+				<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+			</properties>
+		</profile>
+	</profiles>
+
+	<!-- ========================================================== -->
+	<!-- Dependency management -->
+	<dependencyManagement>
+		<dependencies>
+			<!-- JDBC driver -->
+			<dependency>
+				<groupId>${jdbcDriver.groupId}</groupId>
+				<artifactId>${jdbcDriver.artifactId}</artifactId>
+				<version>${jdbcDriver.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- SLF4J (required by Hibernate and Tapestry) -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- Javassist (required by Hibernate) -->
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- CGLIB (required by Spring) -->
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>${cglib.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- Hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<!-- JUnit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- Servlet API -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servletApi.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- Tapestry -->
+			<dependency>
+				<groupId>org.apache.tapestry</groupId>
+				<artifactId>tapestry-core</artifactId>
+				<version>${tapestry.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tapestry</groupId>
+				<artifactId>tapestry-spring</artifactId>
+				<version>${tapestry.version}</version>
+			</dependency>
+			<!-- POJO-Examples Model Util -->
+			<dependency>
+				<groupId>es.udc.pojo</groupId>
+				<artifactId>pojo-modelutil</artifactId>
+				<version>${pojo-modelutil.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.trsvax</groupId>
+				<artifactId>tapestry-bootstrap</artifactId>
+				<version>2.1.3</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- JDBC driver -->
+		<dependency>
+			<groupId>${jdbcDriver.groupId}</groupId>
+			<artifactId>${jdbcDriver.artifactId}</artifactId>
+		</dependency>
+		<!-- SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+		<!-- Javassist -->
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<!-- CGLIB -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+		</dependency>
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<!-- Tapestry -->
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-spring</artifactId>
+		</dependency>
+		<!-- POJO-Examples Model Util -->
+		<dependency>
+			<groupId>es.udc.pojo</groupId>
+			<artifactId>pojo-modelutil</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.trsvax</groupId>
+			<artifactId>tapestry-bootstrap</artifactId>
+		</dependency>
+
+	</dependencies>
+	
+	<repositories>
+	<repository>
+        <id>devlab722-repo</id>
+        <url>
+            http://nexus.devlab722.net/nexus/content/repositories/releases
+        </url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>devlab722-snapshot-repo</id>
+        <url>
+            http://nexus.devlab722.net/nexus/content/repositories/snapshots
+        </url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </repository>
+</repositories>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<!-- =============================================================== -->
+		<!-- Filtering -->
+		<resources>
+
+			<!-- Apply filtering to files matching the following expressions in src/main/resources. -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>spring-config.xml</include>
+					<include>hibernate-config.xml</include>
+				</includes>
+			</resource>
+
+			<!-- Continue considering resources the files in src/main/resources, but 
+				without applying filtering. -->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+
+			<!-- Filter Jetty configuration -->
+			<resource>
+				<directory>src/main/jetty</directory>
+				<includes>
+					<include>jetty-env.xml</include>
+				</includes>
+				<targetPath>../jetty</targetPath>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<testResources>
+
+			<!-- Apply filtering to files matching the following expressions in src/test/resources. -->
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>spring-config-test.xml</include>
+					<include>hibernate-config-experiments.xml</include>
+				</includes>
+			</testResource>
+
+			<!-- Continue considering resources the files in src/test/resources, but 
+				without applying filtering. -->
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+
+		</testResources>
+
+		<pluginManagement>
+			<plugins>
+				<!-- Added to avoid problems with the maven plugin for eclipse -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>sql-maven-plugin</artifactId>
+										<versionRange>${sqlMavenPlugin.version}</versionRange>
+										<goals>
+											<goal>execute</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<!-- ========================================================== -->
+			<!-- Compiler configuration -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${mavenCompilerPlugin.version}</version>
+				<configuration>
+					<verbose>true</verbose>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+
+			<!-- ========================================================== -->
+			<!-- Resources plugin (2.4.x versions do not correctly filter files containing 
+				'@' character). -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${mavenResourcesPlugin.version}</version>
+			</plugin>
+
+			<!-- ========================================================== -->
+			<!-- Setting SQL Plugin -->
+			<!-- - Configuartion specifies onError="continue" since SQL scripts try 
+				to drop tables before creating them (which causes errors if such tables do 
+				not exist yet). - Configuartion specifies autocommit="true" since some drivers 
+				(e.g the PostgreSQL JDBC 2 driver) do not commit changes if some error ocurrs. -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId>
+				<version>${sqlMavenPlugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>${jdbcDriver.groupId}</groupId>
+						<artifactId>${jdbcDriver.artifactId}</artifactId>
+						<version>${jdbcDriver.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<driver>${jdbcDriver.className}</driver>
+					<url>${dataSource.url}</url>
+					<username>${dataSource.user}</username>
+					<password>${dataSource.password}</password>
+					<autocommit>true</autocommit>
+					<onError>continue</onError>
+					<orderFile>ascending</orderFile>
+					<fileset>
+						<basedir>${basedir}</basedir>
+						<includes>
+							<include>src/sql/${dataSource.createTablesScript}</include>
+							<include>src/sql/${dataSource.createDataScript}</include>
+						</includes>
+					</fileset>
+				</configuration>
+				<executions>
+					<execution>
+						<id>create-tables-for-testing</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<driver>${jdbcDriver.className}</driver>
+							<url>${testDataSource.url}</url>
+							<username>${testDataSource.user}</username>
+							<password>${testDataSource.password}</password>
+							<autocommit>true</autocommit>
+							<onError>continue</onError>
+							<fileset>
+								<basedir>${basedir}</basedir>
+								<includes>
+									<include>src/sql/${dataSource.createTablesScript}</include>
+								</includes>
+							</fileset>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- ========================================================== -->
+			<!-- Assembly configuration -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${mavenAssemblyPlugin.version}</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/src.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+
+			<!-- ========================================================== -->
+			<!-- Jetty configuration -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jettyMavenPlugin}</version>
+
+				<configuration>
+					<webAppConfig>
+						<contextPath>/${project.artifactId}</contextPath>
+						<jettyEnvXml>target/jetty/jetty-env.xml</jettyEnvXml>
+					</webAppConfig>
+					<reload>manual</reload>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>9090</port>
+						</connector>
+					</connectors>
+				</configuration>
+
+				<dependencies>
+					<dependency>
+						<groupId>${jdbcDriver.groupId}</groupId>
+						<artifactId>${jdbcDriver.artifactId}</artifactId>
+						<version>${jdbcDriver.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-jdbc</artifactId>
+						<version>${spring.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
+
+	</build>
+</project>

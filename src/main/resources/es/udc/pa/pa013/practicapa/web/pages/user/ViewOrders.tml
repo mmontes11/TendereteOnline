@@ -1,0 +1,97 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+	<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ 	<link rel="stylesheet" href="/resources/demos/style.css" />
+  	<script>
+  		function runSlideOrders() {
+      		$( "#ordersTable" ).effect( "slide", {}, 500, callback );
+    	};	
+    	function callback() {
+      		setTimeout(function() {
+        		$( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+      		}, 1000 );
+    	};    	  	
+    	window.onload = function() {
+			runSlideOrders();
+		}		
+  	</script>	
+	</head>
+	<body>
+	<t:if test="orders">
+
+		<!-- Print orders. -->
+
+		<t:zone t:id="tableZone" id="tableZone">
+			<table id="ordersTable" class="table table-hover" align="center">
+				<thead>
+					<tr>
+						<th>${message:dateOrder-label}</th>
+						<th>${message:linkOrder-label}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr t:type="Loop" t:source="orders" t:value="order">
+						<td>
+							<a href="#" t:type="PageLink" t:page="user/OrderDetails"
+								t:context="order.orderId">							
+								<t:output value="order.date.getTime()" format="dateFormat"/>
+							</a>
+						</td>
+						<td>
+							<a href="#" t:type="PageLink" t:page="user/OrderDetails"
+								t:context="order.orderId">
+								${order.orderId}
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- "Previous" and "Next" links. -->
+			<ul class="pager">
+				<t:if test="previousLinkContext">
+					<li>
+						<a t:type="eventlink" t:event="previous" t:context="previousLinkContext"
+							t:zone="tableZone" href="#"> &larr;
+							${message:link-previous}
+						</a>
+					</li>
+					<p:else>
+						<li class="disabled">
+							<a href="#"> &larr;
+								${message:link-previous}
+							</a>
+						</li>
+					</p:else>
+				</t:if> 
+			&nbsp;
+				<t:if test="nextLinkContext">
+					<li>
+						<a t:type="eventlink" t:event="next" t:context="nextLinkContext"
+							t:zone="tableZone" href="#">
+							${message:link-next} &rarr;
+						</a>
+					</li>
+					<p:else>
+						<li class="disabled">
+							<a href="#">
+								${message:link-next} &rarr;
+							</a>
+						</li>
+					</p:else>
+				</t:if>
+			</ul>
+		</t:zone>
+		<p:else>
+			<div class="alert alert-info">
+				<strong>
+	  				${message:noOrders}
+	  			</strong>
+			</div>
+		</p:else>
+	</t:if>
+	</body>
+</html>	

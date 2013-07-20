@@ -1,0 +1,46 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+	
+	<div align="left">
+		<h3>${message:productOps}</h3>
+	</div>	
+	<div class="button">
+		<a href="#" t:type="PageLink" t:page="admin/NewProduct" class="btn btn-success">
+			<i class="icon-plus"/>
+			${message:newProduct}
+		</a>		
+	</div>	
+	<div class="button">
+		<a href="#" t:type="PageLink" t:page="admin/RemoveProduct" class="btn btn-danger">
+			<i class="icon-remove"/>
+			${message:removeProduct}
+		</a>		
+	</div>	
+	<div class="button">
+		<a href="#" t:type="PageLink" t:page="admin/ModifyProduct" class="btn btn-warning">
+			<i class="icon-pencil"/>
+			${message:modifyProduct}
+		</a>		
+	</div>
+	<div align="left">
+		<h3>${message:categoryOps}</h3>
+	</div>
+	<div class="button">
+		<a href="#" t:type="PageLink" t:page="admin/NewCategory" class="btn btn-success">
+			<i class="icon-plus"/>
+			${message:newCategory}
+		</a>		
+	</div>
+	<div class="button">
+		<a href="#" t:type="PageLink" t:page="admin/RemoveCategory" class="btn btn-danger">
+			<i class="icon-remove"/>
+			${message:removeCategory}
+		</a>		
+	</div>	
+	<div class="button">
+		<a href="#" t:type="PageLink" t:page="admin/ModifyCategory" class="btn btn-warning">
+			<i class="icon-pencil"/>
+			${message:modifyCategory}
+		</a>		
+	</div>		
+</html>
