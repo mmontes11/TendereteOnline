@@ -108,8 +108,6 @@
 <div id="footer" class="clearfix simple">
     <div align="center">
        ${message:footer}
-       <strong>${message:contact}</strong>
-       <a href="http://es.linkedin.com/pub/mart%C3%ADn-montes-p%C3%A9rez/69/b51/8b0"> <img src="${context:/img/linkedin.png}"/> </a>
     </div>
 </div>
 

@@ -11,19 +11,19 @@ INSERT INTO Category VALUES(null,'VideoGames');
 
 -----------------------------Products-------------------------------------------
 --SmartPhones
-INSERT INTO Product VALUES(null,1,'LG Nexus 4',299.00,'https://lh3.googleusercontent.com/-71rz-M__r-U/UVWU9dCAUgI/AAAAAAAAAF8/n97N0coS5_0/w506-h750/lg-nexus-4.jpg',0,0);
-INSERT INTO Product VALUES(null,1,'Samsung Galaxy S4',649.00,'http://www.tuexperto.com/wp-content/uploads/2013/03/Samsung-Galaxy-S4-053.jpg',0,0);
-INSERT INTO Product VALUES(null,1,'HTC One',499.00,'http://insideireland.ie/wp-content/uploads/2013/03/Xperia-Z.jpg',0,0);
-INSERT INTO Product VALUES(null,1,'Sony Xperia Z',599.00,'http://www.htc.com/managed-assets/shared/desktop/smartphones/htc-one/hero/HTC-ProductDetail-Hero-slide-04.png',0,0);
-INSERT INTO Product VALUES(null,1,'Iphone 5',669.00,'http://applezona.com/wp-content/uploads/2012/11/iphone-51.jpg',0,0);
-INSERT INTO Product VALUES(null,1,'Samsung Galaxy Mega',749.00,'http://img.xataka.com/2013/06/Samsung%20Galaxy%20Mega%206.3.jpg',0,0);
-INSERT INTO Product VALUES(null,1,'LG Optimus G',600.00,'http://www.puntogeek.com/wp-content/uploads/2013/04/LG-Optimus-G.jpg',0,0);
+INSERT INTO Product VALUES(null,1,'LG Nexus 4',299.00,'http://s28.postimg.org/fpxfs0d65/nexus4.jpg',0,0);
+INSERT INTO Product VALUES(null,1,'Samsung Galaxy S4',649.00,'http://s28.postimg.org/x5rltpc4t/samsungs4.jpg',0,0);
+INSERT INTO Product VALUES(null,1,'HTC One',499.00,'http://s28.postimg.org/tnb0jklv1/htc_one.jpg',0,0);
+INSERT INTO Product VALUES(null,1,'Sony Xperia Z',599.00,'http://s28.postimg.org/smfd86u99/xperia.jpg',0,0);
+INSERT INTO Product VALUES(null,1,'Iphone 5',669.00,'http://s28.postimg.org/b56nzc431/iphone5.jpg',0,0);
+INSERT INTO Product VALUES(null,1,'Samsung Galaxy Mega',749.00,'http://s28.postimg.org/ppnqu5z1p/mega.jpg',0,0);
+INSERT INTO Product VALUES(null,1,'LG Optimus G',600.00,'http://s28.postimg.org/ggq5xsfjh/image.jpg',0,0);
 --VideoGames
-INSERT INTO Product VALUES(null,2,'PlayStation 4',399.99,'http://es.playstation.com/media/55acuiVM/dualshock_system.jpg',0,0);
-INSERT INTO Product VALUES(null,2,'Xbox One',499.99,'http://compass.xboxlive.com/assets/59/d5/59d51511-a3a1-42df-8f82-912b0a1e05cb.png?n=XBR_Hero2.png',0,0);
-INSERT INTO Product VALUES(null,2,'Grand Theft Auto V',69.99,'http://thehut.pantherssl.com/productimg/0/600/600/86/10569986-1364980752-887226.jpg',0,0);
-INSERT INTO Product VALUES(null,2,'Assassins Creed Black Flag',69.99,'http://www.blogcdn.com/www.joystiq.com/media/2013/02/ac4bfps3uk2d-1362054374.jpg',0,0);
-INSERT INTO Product VALUES(null,2,'NBA 2K14',69.99,'http://i11a.3djuegos.com/juegos/10016/nba_2k14/fotos/ficha/nba_2k14-2276776.jpg',0,0);
+INSERT INTO Product VALUES(null,2,'PlayStation 4',399.99,'http://s28.postimg.org/6r2s18iwd/ps4.jpg',0,0);
+INSERT INTO Product VALUES(null,2,'Xbox One',499.99,'http://s28.postimg.org/whirardf1/xbox.jpg',0,0);
+INSERT INTO Product VALUES(null,2,'Grand Theft Auto V',69.99,'http://s28.postimg.org/3ms44g23x/gta5.jpg',0,0);
+INSERT INTO Product VALUES(null,2,'Assassins Creed Black Flag',69.99,'http://s28.postimg.org/gfbmqmobx/assassins.jpg',0,0);
+INSERT INTO Product VALUES(null,2,'NBA 2K14',69.99,'http://s28.postimg.org/hrxx69b59/nba2k14.jpg',0,0);
 
 
 -----------------------------UserProfiles----------------------------------------

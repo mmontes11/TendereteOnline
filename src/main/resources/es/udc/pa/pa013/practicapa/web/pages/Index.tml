@@ -37,7 +37,10 @@
 		${message:info}
 		</p>
 		<p>
-		<a href="http://es.linkedin.com/pub/mart%C3%ADn-montes-p%C3%A9rez/69/b51/8b0">${message:name} <img src="${context:/img/linkedin.png}"/></a>
+			<ul class="inline">
+			  <li><a href="http://es.linkedin.com/in/mmontesperez/en">${message:name1} <img src="${context:/img/linkedin.png}"/></a></li>
+			  <li><a href="http://uk.linkedin.com/in/iagovelosoabalo">${message:name2} <img src="${context:/img/linkedin.png}"/></a></li>
+			</ul>
 		</p>
  	</div>
 	<div id="myCarousel" class="carousel slide">	  	
