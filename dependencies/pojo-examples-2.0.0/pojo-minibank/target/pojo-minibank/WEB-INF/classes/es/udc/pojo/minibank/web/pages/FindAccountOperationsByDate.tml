@@ -1,0 +1,38 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title">
+	
+<form t:type="Form" t:id="findAccountOperationsByDateForm">
+
+	<t:errors/>
+
+    <div class="field">
+    	<t:label for="accountId"/>
+        <span class="entry">
+            <input t:type="TextField" t:id="accountId" 
+            	   t:validate="required, min=0" size="16" maxlength="16"/>
+        </span>
+    </div>
+    
+     <div class="field">
+    	<t:label for="startDate"/>
+        <span class="entry">
+            <input t:type="TextField" t:id="startDate" t:validate="required"
+            	size="10" maxlength="10"/>
+        </span>
+    </div>
+    
+    <div class="field">
+    	<t:label for="endDate"/>
+        <span class="entry">
+            <input t:type="TextField" t:id="endDate" t:validate="required"
+            	size="10" maxlength="10"/>
+        </span>
+    </div>
+    
+    <div class="button">
+		<input type="submit" value="${message:button-find}"/>
+    </div>
+    
+</form>
+
+</html>

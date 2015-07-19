@@ -1,0 +1,19 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title">
+
+<form t:type="Form" t:id="selectLanguageForm">
+
+    <div class="field">
+        <t:label for="language"/>
+        <span class="entry">
+        	<t:select t:id="language" model="languages" validate="required"/>
+        </span>
+    </div>
+
+    <div class="button">
+		<input type="submit" value="${message:button-apply}"/>
+    </div>
+
+</form>
+		
+</html>

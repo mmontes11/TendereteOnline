@@ -1,0 +1,42 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+	t:type="Layout" t:pageTitle="title">
+
+<t:grid source="accountOperationGridDataSource" row="accountOperation"
+	rowsPerPage="rowsPerPage" exclude="accountOperationId, account"
+	reorder="date, type, amount" class="accountOperations" lean="literal:true">
+
+	<p:dateHeader>
+		${message:date}
+	</p:dateHeader>
+
+	<p:typeHeader>
+		${message:type}
+	</p:typeHeader>
+
+	<p:amountHeader>
+		${message:amount-label}
+	</p:amountHeader>
+
+	<p:dateCell>
+		<t:output value="accountOperation.date.time" format="dateFormat"/>
+	</p:dateCell>
+
+	<p:amountCell>
+		<t:output value="accountOperation.amount" format="numberFormat"/>
+	</p:amountCell>
+
+	<p:empty>
+		<t:if test="accountOperationGridDataSource.accountNotFound">
+			<p>${message:accountNotFound}.</p>
+			<p:else>
+				<p>${message:noAccountOperations}.</p>
+            </p:else>
+		</t:if>
+	</p:empty>
+
+</t:grid>
+
+<br/>
+
+</html>

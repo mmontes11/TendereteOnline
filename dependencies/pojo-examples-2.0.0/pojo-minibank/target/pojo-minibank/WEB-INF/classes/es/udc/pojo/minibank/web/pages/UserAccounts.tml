@@ -1,0 +1,68 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+	t:type="Layout" t:pageTitle="title">
+	 
+<t:if test="accounts">
+
+		<!-- Print user accounts. -->
+		
+		<table class="userAccounts">
+		
+		<tr>
+		    <th>${message:accountId-label}</th>
+		    <th>${message:balance-label}</th>
+		</tr>
+				
+		<tr t:type="Loop" t:source="accounts" t:value="account">
+		    <td>
+		    	<a href="#" t:type="PageLink" t:page="AccountDetails"
+		    		t:context="account.accountId">
+		    		${account.accountId}
+		    	</a>
+		    </td>
+		    <td><t:output value="account.balance" format="format"/></td>
+		</tr>
+		
+		</table>
+
+		<!-- "Previous" and "Next" links. -->
+		
+		<div class="previousNextLinks">
+		
+		<span class="previousLink">
+		
+		<t:if test="previousLinkContext">
+		
+			<a href="#" t:type="PageLink" t:page="UserAccounts"
+		    	t:context="previousLinkContext">
+		    	${message:link-previous}
+		    </a>
+		
+		</t:if>
+		
+		</span>
+		
+		<span class="nextLink">
+		
+		<t:if test="nextLinkContext">
+		
+			<a href="#" t:type="PageLink" t:page="UserAccounts"
+		    	t:context="nextLinkContext">
+		    	${message:link-next}
+		    </a>
+		
+		</t:if>
+		
+		</span>
+
+		</div>
+		
+	<p:else>
+	
+		<p>${message:noAccounts}.</p>
+		
+	</p:else>
+	
+</t:if>
+
+</html>

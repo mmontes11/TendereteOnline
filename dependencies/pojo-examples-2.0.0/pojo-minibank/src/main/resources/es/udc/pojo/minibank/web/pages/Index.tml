@@ -1,0 +1,8 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title">
+
+<p class="welcome">
+    ${message:welcome}
+</p>
+   
+</html>

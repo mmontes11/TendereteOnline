@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+<head>
+	<title>${pageTitle}</title>
+	<link rel="StyleSheet" href="${context:/css/styles.css}"
+		  type="text/css" media="all"/>
+</head>
+
+<body>
+
+<!-- Window. -->
+
+<div id="window">
+
+<!-- Body header. -->
+
+<div id="header">
+	${message:header}
+</div>
+
+<!-- Page body. -->
+
+<div id="pageBody">
+
+<!-- Sidebar. -->
+
+<div id="sidebar">
+
+<ul>
+
+<li>
+	<a href="#" t:type="PageLink" t:page="Index">${message:sidebar-home}</a>
+</li>
+<li>
+	<a href="#" t:type="PageLink" t:page="CreateAccount">
+		${message:sidebar-create}
+	</a>
+</li>
+<li>
+	<a href="#" t:type="PageLink" t:page="FindAccounts">
+		${message:sidebar-findAccounts}
+	</a>
+</li>
+<li>
+	<a href="#" t:type="PageLink" t:page="FindAccountOperationsByDate">
+		${message:sidebar-findAccountOperationsByDate}
+	</a>
+</li>
+<li>
+	<a href="#" t:type="PageLink" t:page="AddWithdraw">
+		${message:sidebar-addWithdraw}
+	</a>
+</li>
+<li>
+	<a href="#" t:type="PageLink" t:page="Transfer">
+		${message:sidebar-transfer}
+	</a>
+</li>
+<li>
+	<a href="#" t:type="PageLink" t:page="RemoveAccount">
+		${message:sidebar-remove}
+	</a>
+</li>
+<li>
+	<a href="#" t:type="PageLink" t:page="SelectLanguage">
+		${message:sidebar-selectLanguage}
+	</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- Content. -->
+
+<div id="content">
+  	<t:body/>
+</div>
+
+<!-- End of "pageBody" id. -->
+
+</div>
+
+<!-- Body footer. -->
+
+<div id="footer">
+	${message:footer}
+</div>
+
+<!-- End of "window" id. -->
+
+</div>
+
+<!-- End of HTML body. -->
+
+</body>
+
+</html>

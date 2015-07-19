@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <display-name>POJO-Examples Advanced Hibernate Tutorial Demo</display-name>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:/pojo-advhibernatetut-spring-config.xml</param-value>
+   </context-param>
+  
+  <!-- ============================== Filters ============================== -->
+
+  <filter>
+    <filter-name>openSessionInView</filter-name>
+    <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    <init-param>
+      <param-name>sessionFactoryBeanName</param-name>
+      <param-value>sessionFactory</param-value>
+    </init-param>
+  </filter>
+   
+  <!-- ======================= Filter mapping ============================== -->
+ 
+  <filter-mapping>
+    <filter-name>openSessionInView</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- =========================== Listeners =============================== -->
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- ============================== Servlets ============================= -->
+
+  <servlet>
+    <servlet-name>DemoServlet</servlet-name>
+    <servlet-class>es.udc.pojo.advhibernatetut.demo.DemoServlet</servlet-class>
+  </servlet>
+
+  <!-- ====================== Servlet mapping ============================== -->
+
+  <servlet-mapping>
+    <servlet-name>DemoServlet</servlet-name>
+    <url-pattern>/DemoServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>

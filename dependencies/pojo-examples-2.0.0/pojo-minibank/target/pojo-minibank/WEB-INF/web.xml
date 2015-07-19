@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    
+	<display-name>POJO-Examples MiniBank</display-name>
+	
+	<context-param>
+		<param-name>tapestry.app-package</param-name>
+		<param-value>es.udc.pojo.minibank.web</param-value>
+	</context-param>
+    <context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>classpath:/pojo-minibank-spring-config.xml</param-value>
+    </context-param>
+    <context-param>
+    	<param-name>tapestry.production-mode</param-name>
+    	<param-value>false</param-value>
+    </context-param>
+    
+    <!-- ***********************************************************************
+         Uncomment to enable "Open Sesion In View" (not necessary for MiniBank). 
+    <filter>
+    	<filter-name>openSessionInView</filter-name>
+    	<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    	<init-param>
+      		<param-name>sessionFactoryBeanName</param-name>
+      		<param-value>sessionFactory</param-value>
+    	</init-param>
+  	</filter>
+  	     ******************************************************************* -->
+  	
+    <filter>
+    	<filter-name>app</filter-name>
+    	<filter-class>org.apache.tapestry5.spring.TapestrySpringFilter</filter-class>
+    </filter>
+    
+    <!-- ***********************************************************************
+         Uncomment to enable "Open Sesion In View" (not necessary for MiniBank) 
+    <filter-mapping>
+    	<filter-name>openSessionInView</filter-name>
+    	<url-pattern>/*</url-pattern>
+    </filter-mapping>
+         ******************************************************************* -->
+    
+	<filter-mapping>
+		<filter-name>app</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>

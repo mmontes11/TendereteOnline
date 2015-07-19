@@ -1,0 +1,38 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title">
+
+<form t:type="Form" t:id="transferForm">
+	
+	<t:errors/>
+	
+    <div class="field">
+        <t:label for="sourceAccountId"/>
+        <span class="entry">
+			<input t:type="TextField" t:id="sourceAccountId" t:validate="required, min=0"
+				   size="16" maxlength="16"/>
+        </span>   
+    </div>
+
+    <div class="field">
+        <t:label for="destinationAccountId"/>
+        <span class="entry">
+			<input t:type="TextField" t:id="destinationAccountId" t:validate="required, min=0"
+				   size="16" maxlength="16"/>
+        </span>   
+    </div>
+
+    <div class="field">
+        <t:label for="amount"/>
+        <span class="entry">
+			<input t:type="TextField" t:id="amount" 
+			       t:validate="required,min=0" size="16" maxlength="16"/>
+        </span>
+    </div>
+
+    <div class="button">
+		<input type="submit" value="${message:transfer}"/>
+    </div>
+
+</form>
+		
+</html>

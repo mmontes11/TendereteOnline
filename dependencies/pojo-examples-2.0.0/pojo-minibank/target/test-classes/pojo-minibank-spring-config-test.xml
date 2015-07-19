@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--  Data source. -->
+    <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.SingleConnectionDataSource"
+        p:driverClassName="com.mysql.jdbc.Driver"
+        p:url="jdbc:mysql://localhost/pojotest" p:username="pojo"
+        p:password="pojo" 
+        p:suppressClose="true" />
+
+    <!-- Enable component scanning for defining beans with annotations. -->
+    <context:component-scan base-package="es.udc.pojo.minibank.test.experiments.transfer"/>
+
+</beans>

@@ -1,0 +1,220 @@
+/* --------------------------- General -------------------------------------- */
+
+/* Body. */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 10px 20px;
+    background-color: #dddde0;
+}
+
+/* Links. */
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Window. */
+
+#window {
+    border: #000 1px solid;
+    background-color: #fff;
+    padding: 7px;
+    width: 98%;
+}
+
+/* Page title. */
+
+#header {
+    background-color: #097099;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0 5px 5px;
+    width: 99%;
+}
+
+/* Page body. */
+
+#pageBody { 
+    margin-top: 5px;
+    width: 100%;
+}
+
+/* Sidebar. */
+
+#sidebar {
+    float: left;
+    background-color: #094069;
+    width: 28%;
+}
+
+#sidebar a {
+    color : #fffac6;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding-top: 5px;
+    /* Hack for correct indentation (the following three lines). */
+    margin-left: 0;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+#sidebar li {
+    padding: 0 0 5px 5px;
+}
+
+/* Content. */
+
+#content {
+    padding-top: 20px;
+    float: right;    
+    text-align: center;
+    width: 71%;
+}
+
+p.welcome {
+    font-size: 16px;
+}
+
+/* Forms. */
+
+form {
+    width: 100%;
+}
+
+div.field {
+    clear: both;
+    padding-top: 1em;
+    width: 100%;
+}
+
+div.field label {
+    float: left;
+    text-align: right;
+    font-weight: bold;
+    width: 49.5%;
+}
+
+div.field span.entry {
+    float: right;
+    text-align: left;
+    width: 49.5%;
+}
+
+div.button {
+    clear: both;
+    padding-top: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+input, select, textarea  {
+    background-color: #f4f4f4;
+}
+
+/* General properties. */
+
+table th, strong {
+    font-weight: bold;
+}
+
+table th, td {
+    font-size: 12px;
+}
+
+/* Account details. */
+
+table.accountDetails {
+   margin: 0 auto;
+   border: #000 1px solid;
+   text-align: left;
+   width: 35%;
+}
+
+table.accountDetails th {
+    width: 60%;
+}
+
+table.accountDetails td {
+    width: 30%;
+}
+
+/* User's accounts. */
+
+table.userAccounts {
+   margin: 0 auto;
+   text-align: center;
+   width: 35%;
+}
+
+/* Account operations. */
+
+table.accountOperations {
+   margin: 0 auto;
+   text-align: center;
+   width: 45%; 
+}
+
+/* "Previous" and "Next" links. */
+
+div.previousNextLinks {
+    margin-left: 10%;
+    width: 80%;    
+    margin-bottom: 10px;
+}
+
+div.previousNextLinks span.previousLink {
+    float: left;
+    text-align: left;
+    width: 49.5%;
+}
+
+div.previousNextLinks span.nextLink {
+    float: right;
+    text-align: right;
+    width: 49.5%;
+}
+
+/* Footer. */
+
+#footer {
+    clear: both;
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: #000 1px solid; 
+    width: 100%;
+}
+
+/* --------------------------- Tapestry ------------------------------------- */
+
+/* Error messages. */
+
+div.t-error ul {
+	font-weight: bold;
+}
+
+/* Grid. */
+
+div.t-data-grid {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+div.t-data-grid-pager span.current {
+    background-color: #097099;
+}
+
+div.t-data-grid-pager a, div.t-data-grid-pager span.current {
+    font-size: 12px;
+}
+
+

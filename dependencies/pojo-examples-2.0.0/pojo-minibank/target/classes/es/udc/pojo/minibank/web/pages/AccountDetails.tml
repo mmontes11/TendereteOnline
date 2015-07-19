@@ -1,0 +1,32 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+	t:type="Layout" t:pageTitle="title">
+	
+<t:if test="account">
+
+	<table class="accountDetails">
+	
+	    <tr>
+	        <th>${message:accountId-label}</th>
+	        <td>${account.accountId}</td>
+	    </tr>
+	
+	    <tr>
+	        <th>${message:userId-label}</th>
+	        <td>${account.userId}</td>
+	    </tr>
+	
+	    <tr>
+	        <th>${message:balance-label}</th>
+	        <td><t:output value="account.balance" format="format"/></td>
+	    </tr>
+	
+	</table>
+	        	
+	<p:else>
+		<p>${message:accountNotFound}</p>
+	</p:else>
+
+</t:if>
+
+</html>

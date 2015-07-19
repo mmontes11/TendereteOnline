@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+<head>
+	<title>${message:title}</title>
+</head>
+
+<body>
+
+<br/>
+
+<form t:type="Form" t:id="createAccountForm">
+
+<t:errors/>
+
+<table width="100%" border="0" align="center" cellspacing="12">
+
+<!-- User Identifier -->
+
+	<tr>		
+		<th align="right" width="50%">
+			<t:label for="userId"/>
+		</th>
+		<td align="left">	    	    
+			<input t:type="TextField" t:id="userId" 
+			       t:validate="required, min=0" size="16" maxlength="16" />
+		</td>
+	</tr>
+	 
+<!-- Balance -->
+	
+	<tr>		
+		<th align="right" width="50%">
+			<t:label for="balance"/>
+		</th>
+		<td align="left">	
+			<input t:type="TextField" t:id="balance" 
+			       t:validate="required,min=0" size="16" maxlength="16"/>
+		</td>
+	</tr>	
+
+<!-- Create button -->
+	
+	<tr>		
+		<td width="50%"></td>
+		<td align="left" width="50%">
+		    <input type="submit" value="${message:create}"/>
+		</td>
+	</tr>
+	
+</table>
+
+</form>
+
+</body>
+				
+</html>

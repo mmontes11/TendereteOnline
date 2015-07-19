@@ -1,0 +1,178 @@
+Instalación / Configuración entorno PA / 2012-2013 - Unix / Mac OS
+-------------------------------------------------------------------------------
+
+* Descarga y copia del SW desde ftp://ftp.fic.udc.es/publico/POJOyWS/Software-POJOyWS-Java-2012-2013/
+
+  - Seleccionar la versión adecuada al operativo / arquitectura del ordenador
+  
+  - Descargar y descomprimir en /opt el siguiente software
+     - jdk
+     - maven
+     - eclipse
+     - mysql
+	 
+  - Descargar y descomprimir en $HOME/software el siguiente software
+     - tomcat
+	 
+* Descargar y descomprimir los ejemplos de la asignatura en $HOME/software
+  - Disponibles en moodle
+  
+* Pasos de pre-instalación de MySQL 5.5.25a
+  - Instalación de MySQL como usuario root y ejecución como usuario normal
+
+sudo chown -R root:root /opt/mysql-5.5.25a-linux2.6-i686
+# NOTE: For Mac OS X, use "root:wheel" instead of "root:root" with "chmod".
+sudo chmod -R 755 /opt/mysql-5.5.25a-linux2.6-i686
+sudo ln -s /opt/mysql-5.5.25a-linux2.6-i686 /usr/local/mysql
+
+- En Ubuntu debe instalarse la librería libio1
+sudo apt-get install libaio1
+
+* Establecer variables de entorno
+  - Añadir al fichero $HOME/.bashrc ($HOME/.bash_profile en caso de Mac OS X) lo siguiente
+
+# J2SE
+export JAVA_HOME=/opt/jdk1.7.0_05
+# For Mac OS X, check your installation and use:
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
+# or
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_<<versión-update>>.jdk/Contents/Home
+# For convenience.
+PATH=$JAVA_HOME/bin:$PATH
+
+# Maven
+MAVEN_HOME=/opt/apache-maven-3.0.4
+PATH=$MAVEN_HOME/bin:$PATH
+export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
+
+# MySQL.
+MYSQL_HOME=/usr/local/mysql
+PATH=$MYSQL_HOME/bin:$PATH
+
+# Tomcat.
+export CATALINA_OPTS=$MAVEN_OPTS
+
+# Eclipse.
+PATH=/opt/eclipse:$PATH
+
+  
+- Cerrar todos los terminales y abrir terminales nuevos
+
+- Comprobar que el entorno ha quedado correctamente configurado comprobando 
+  salidas de los siguientes comandos
+
+which java
+which mvn
+which eclipse
+which mysqld
+  
+* Configuración de MySQL (inicialización de la zona de datos )
+
+mkdir $HOME/software/.MySQLData
+
+- Crear un fichero $HOME/.my.cnf con el siguiente contenido (en lugar de <user>
+  poner el login del usuario)
+
+[mysqld]
+datadir=/home/<user>/software/.MySQLData
+
+- Creación de zona de datos del servidor MySQL
+
+cd /usr/local/mysql
+scripts/mysql_install_db
+
+# NOTA IMPORTANTE: Si la ejecución de este script no ha encontrado el comando 
+  mysql, modificar el fichero $HOME/.my.cnf para indicar las siguientes entradas
+  y después volver a ejecutar scripts/mysql_install_db
+
+[client]
+socket      = /home/<login>/software/.MySQLData/mysqld.sock
+
+[mysqld]
+pid-file    = /home/<login>/software/.MySQLData/mysqld.pid
+socket      = /home/<login>/software/.MySQLData/mysqld.sock
+basedir     = /usr/local/mysql
+datadir     = /home/<login>/software/.MySQLData
+tmpdir      = /tmp
+language    = /usr/local/mysql/share/english
+
+# NOTA IMPORTANTE: Si sigue sin funcionar y muestra un error de permisos por la 
+  utilización del usuario mysql, ejecutar en su lugar
+scripts/mysql_install_db --user=<login>
+
+
+* Creación de bases de datos necesarias para los ejemplos
+
+- Arrancar MySQL
+
+mysqld
+
+- Creación de bases de datos pojo y pojotest (abrir en una consola diferente)
+
+mysqladmin -u root create pojo
+mysqladmin -u root create pojotest
+
+- Creación de usuario pojo con password con permisos sobre pojo y pojotest
+
+mysql -u root
+
+  GRANT ALL PRIVILEGES ON pojo.* to pojo@localhost IDENTIFIED BY 'pojo';
+  GRANT ALL PRIVILEGES ON pojotest.* to pojo@localhost IDENTIFIED BY 'pojo';
+  exit
+
+- Comprobar acceso a BD
+
+mysql -u pojo --password=pojo pojo
+  exit
+
+mysql -u pojo --password=pojo pojotest
+  exit
+	
+* Inicialización de datos de ejemplo y compilación de los ejemplos
+
+cd $HOME/software/pojo-examples-2.0.0
+mvn sql:execute install
+
+* Finalizar la ejecución de la BD
+
+mysqladmin -u root shutdown
+
+* Configuración de eclipse
+
+# NOTA: El wizard "Preferences" está accesible desde el menú "Window" (menú 
+  "Eclipse" en Mac OS X)
+
+- Utilizar Java 1.7:
+  + En "Preferences>Java>Compiler" seleccionar "1.7" en "Compiler
+    compliance level".
+  + En "Preferences>Java>Installed JREs" seleccionar la JVM 1.7.0(Java SE 7).
+
+- Establecer UTF-8 como el encoding por defecto de Eclipse
+  En "Preferences>General>Workspace" seleccionar UTF-8 en "Text
+  File Encoding"
+  
+- Establecer UTF-8 como el encoding por defecto para ficheros properties Java
+  En "Preferences>General>Content Types>Text>Java Properties File",
+  escribir "UTF-8" y pulsar "Update"
+  
+- Instalar el plugin Subclipse (añade soporte para Subversion desde Eclipse)
+  + Ir a "Help>Install New Software..."
+  + Pulsar "Add", en "Name" poner el nombre deseado, en "Location" poner 
+    http://subclipse.tigris.org/update_1.8.x y pulsar "OK"
+  + Seleccionar todos los items, aceptar la licencia y todos los diálogos 
+    que aparezcan durante el proceso de instalación
+  + Pulsar "Finish"	
+  + Configuración: En "Preferences>Team>SVN>SVN interface", seleccionar la 
+    opción "SVNKit (Pure Java) ... " en "Client"
+  + Reiniciar Eclipse
+	
+- Instalar el Maven SCM handler for Subclipse compatible con Subclipse 1.8.x
+  (añade integración de subversión con maven en Eclipse: posibilidad de hacer
+  check out/importar proyectos maven almacenados en repositorios subversion)
+  + Ir a "Help>Install New Software..."
+  + Pulsar "Add", en "Name" poner el nombre deseado, en "Location" poner 
+    http://subclipse.tigris.org/m2eclipse/1.0
+  + Seleccionar todos los items, aceptar la licencia y todos los diálogos 
+    que aparezcan durante el proceso de instalación
+  + Pulsar "Finish"	
+  + Reiniciar Eclipse

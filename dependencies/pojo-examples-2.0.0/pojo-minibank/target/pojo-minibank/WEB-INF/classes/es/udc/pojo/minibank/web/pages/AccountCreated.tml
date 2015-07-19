@@ -1,0 +1,9 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title">
+	
+	 
+<p>${message:title}</p>
+<p/>
+<p>${message:accountId-label}: <strong>${accountId}</strong></p>
+
+</html>

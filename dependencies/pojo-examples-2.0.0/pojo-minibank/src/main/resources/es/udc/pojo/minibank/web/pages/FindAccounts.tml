@@ -1,0 +1,29 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title">
+
+<form t:type="Form" t:id="findAccountsForm">
+	
+	<t:errors/>
+	
+    <div class="field">
+        <t:label for="id"/>
+        <span class="entry">
+			<input t:type="TextField" t:id="id" t:validate="required, min=0"
+				   size="16" maxlength="16"/>
+        </span>   
+    </div>
+
+    <div class="field">
+        <t:label for="accountSearchType"/>
+        <span class="entry">
+        	<t:select t:id="accountSearchType" validate="required"/>
+        </span>
+    </div>
+
+    <div class="button">
+		<input type="submit" value="${message:button-find}"/>
+    </div>
+
+</form>
+		
+</html>

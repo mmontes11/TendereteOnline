@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+<head>
+	<title>${message:title}</title>
+</head>
+
+<body text="#000000" bgcolor="#ffffff">
+<div align="center">
+  <p>
+    <font color="#000099" face="Arial, Helvetica, sans-serif">
+      <b>${message:bodyMessage-1} ${accountId} ${message:bodyMessage-2}</b>
+    </font>
+  </p>
+</div>	
+
+<br/>
+<a href="#" t:type="PageLink" t:page="Index">${message:link-home}</a>
+<br/>
+</body>
+
+</html>

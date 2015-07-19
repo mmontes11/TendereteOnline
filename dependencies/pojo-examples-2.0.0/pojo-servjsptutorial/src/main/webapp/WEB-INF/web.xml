@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <display-name>POJO-Examples ServJSPTutorial</display-name>
+
+  <!-- ============================== Servlets ============================= -->
+
+  <servlet>
+    <servlet-name>CreateAccount</servlet-name>
+    <servlet-class>es.udc.pojo.servjsptutorial.web.CreateAccountServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>FindAccount</servlet-name>
+    <servlet-class>es.udc.pojo.servjsptutorial.web.FindAccountServlet</servlet-class>
+  </servlet>
+
+  <!-- ====================== Servlet mapping ============================== -->
+
+  <servlet-mapping>
+    <servlet-name>CreateAccount</servlet-name>
+    <url-pattern>/CreateAccount</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>FindAccount</servlet-name>
+    <url-pattern>/FindAccount</url-pattern>
+  </servlet-mapping>
+
+  <!-- ============================= Session =============================== -->
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
+  <!-- =========================== Welcome page ============================ -->
+
+  <welcome-file-list>
+    <welcome-file>Index.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

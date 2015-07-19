@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.udc.pojo</groupId>
+        <artifactId>pojo-examples</artifactId>
+        <version>2.0.0</version>
+    </parent>
+    <artifactId>pojo-tapestrytutorial</artifactId>
+    <packaging>war</packaging>
+    <name>POJO-Examples Tapestry Tutorial Subsystem</name>
+
+    <build>
+        <finalName>pojo-tapestrytutorial</finalName>
+    </build>
+
+    <dependencies>
+        <!-- Tapestry -->
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-core</artifactId>
+        </dependency>
+        <!-- POJO-Examples Model Util -->
+        <dependency>
+            <groupId>es.udc.pojo</groupId>
+            <artifactId>pojo-modelutil</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-orm</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+</project>
