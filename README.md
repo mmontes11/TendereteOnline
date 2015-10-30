@@ -1,4 +1,4 @@
-                  ********** TendereteOnline **********
+# TendereteOnline
 
 Environment variables
 ---------------------
@@ -9,7 +9,7 @@ your environment.
 # J2SE
 export JAVA_HOME=/opt/jdk1.7.0_05
 # For Mac OS X, use:
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
 # For convenience.
 PATH=$JAVA_HOME/bin:$PATH
 
